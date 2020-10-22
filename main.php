@@ -15,6 +15,7 @@ function binary_search($file_path, $val_key){
 			$res = explode(chr(9), $row);
 			if($key == $res[0]){
 				if($up == $current) {
+					fclose($fp);
 					return 'undef';
 				} else {
 					$current = $up;
@@ -29,13 +30,12 @@ function binary_search($file_path, $val_key){
 			if($cmp < 0) {
 				$down = $current;
 			} elseif($cmp == 0) {
+				fclose($fp);
 				return $value;
 			} else {
 				$up = $current;
 			}
 		}
-		
-		fclose($fp);
 	}
 	else echo "File does not exist";
 }
